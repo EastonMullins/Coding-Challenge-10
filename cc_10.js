@@ -81,6 +81,18 @@ listOrders(){
         console.log(order.getOrderDetails());
     });
 }
+// Task 5 - Implementing Product Restocking
+
+restockProduct(productId, quantity){
+    const product = this.products.find(prod => prod.id === productId);
+
+    if (product){
+        product.stock += quantity;
+        console.log(`Product ${product.name} has been retocked. Current Stock : ${product.stock}`);
+    } else {
+        console.log(`Product ${product.name} out of stock.`);
+    }
+}
 }
 const inventory = new Inventory();
 inventory.addProduct(prod1);
@@ -90,3 +102,6 @@ inventory.listOrders();
 // Expected output: "Order ID: 601, Product: Laptop, Quantity: 2, Total Price: $2400"
 console.log(prod1.getDetails());
 // Expected output: "Product: Laptop, ID: 101, Price: $1200, Stock: 3"
+inventory.restockProduct(101, 5);
+console.log(prod1.getDetails()); 
+// Expected output: "Product: Laptop, ID: 101, Price: $1200, Stock: 8"
